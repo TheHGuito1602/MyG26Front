@@ -3,6 +3,7 @@ import { Link, useNavigate } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
 import { logout, reset } from '../features/auth/authSlice'
 
+
 const Header = () => {
 
     const dispatch = useDispatch()
@@ -10,10 +11,10 @@ const Header = () => {
 
     const { user } = useSelector((state) => state.auth)
 
-    const onLogout = () =>{
+    const onLogout = () => {
         dispatch(logout())
         dispatch(reset())
-        navigate('/login')
+        navigate('/')
     }
 
     return (
@@ -25,22 +26,19 @@ const Header = () => {
                 {user ? (
                     <li>
                         <button className='btn' onClick={onLogout}>
-                            <FaSignInAlt></FaSignInAlt>
-                            Logout
+                            <FaSignOutAlt /> Logout
                         </button>
                     </li>
                 ) : (
                     <>
                         <li>
                             <Link to='/login'>
-                                <FaSignInAlt></FaSignInAlt>
-                                Login
+                                <FaSignInAlt /> Login
                             </Link>
                         </li>
                         <li>
-                            <Link to='register'>
-                                <FaUser></FaUser>
-                                Registrar
+                            <Link to='/register'>
+                                <FaUser /> Registrar
                             </Link>
                         </li>
                     </>
